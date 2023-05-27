@@ -3,7 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookKeeper.Api", "BookKeeper.Api\BookKeeper.Api.csproj", "{909BAC0A-5830-4026-AE85-47E7A1A9E48B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookKeeper.Models", "BookKeeper.Models\BookKeeper.Models.csproj", "{D5007258-B9C8-4312-AC3E-599B54170709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookKeeper.DTO", "BookKeeper.DTO\BookKeeper.DTO.csproj", "{F8FE904A-9902-4801-8421-E59785CFCBD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookKeeper.DataStore", "BookKeeper.DataStore\BookKeeper.DataStore.csproj", "{54B355FB-93C6-4619-A503-B1C6653FC770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookKeeper.Service", "BookKeeper.Service\BookKeeper.Service.csproj", "{94C0BEEE-C1AE-41B7-9501-F6FA63F91D7A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{909BAC0A-5830-4026-AE85-47E7A1A9E48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909BAC0A-5830-4026-AE85-47E7A1A9E48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909BAC0A-5830-4026-AE85-47E7A1A9E48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909BAC0A-5830-4026-AE85-47E7A1A9E48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5007258-B9C8-4312-AC3E-599B54170709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5007258-B9C8-4312-AC3E-599B54170709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5007258-B9C8-4312-AC3E-599B54170709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5007258-B9C8-4312-AC3E-599B54170709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8FE904A-9902-4801-8421-E59785CFCBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8FE904A-9902-4801-8421-E59785CFCBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8FE904A-9902-4801-8421-E59785CFCBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8FE904A-9902-4801-8421-E59785CFCBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B355FB-93C6-4619-A503-B1C6653FC770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B355FB-93C6-4619-A503-B1C6653FC770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B355FB-93C6-4619-A503-B1C6653FC770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B355FB-93C6-4619-A503-B1C6653FC770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C0BEEE-C1AE-41B7-9501-F6FA63F91D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C0BEEE-C1AE-41B7-9501-F6FA63F91D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C0BEEE-C1AE-41B7-9501-F6FA63F91D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C0BEEE-C1AE-41B7-9501-F6FA63F91D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

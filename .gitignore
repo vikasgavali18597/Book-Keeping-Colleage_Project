@@ -3,3 +3,13 @@
 ################################################################################
 
 /Api/BookKeeper/.vs/BookKeeper/v17
+/Api/BookKeeper/BookKeeper.Service/obj/Debug/net6.0
+/Api/BookKeeper/BookKeeper.Service/obj
+/Api/BookKeeper/BookKeeper.Models/obj
+/Api/BookKeeper/BookKeeper.DTO/obj/Debug/net6.0
+/Api/BookKeeper/BookKeeper.DTO/obj
+/Api/BookKeeper/BookKeeper.DataStore/obj/Debug/net6.0
+/Api/BookKeeper/BookKeeper.DataStore/obj
+/Api/BookKeeper/BookKeeper.Api/obj/Debug/net6.0
+/Api/BookKeeper/BookKeeper.Api/obj
+/Api/BookKeeper/.vs/BookKeeper/FileContentIndex
