@@ -1,7 +1,8 @@
 ﻿namespace BookKeeper.Models
 {
-    public class Account : Base
+    public class Account
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
         public string ShortName { get; set; }

@@ -1,7 +1,8 @@
 ﻿namespace BookKeeper.Models
 {
-    public class JournalEntry : Base
+    public class JournalEntry
     {
+        public Guid Id { get; set; }
         public string GlNumber { get; set; } = string.Empty;
 
         public string Narration { get; set; } = string.Empty;

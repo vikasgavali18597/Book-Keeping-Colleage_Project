@@ -1,7 +1,8 @@
 ﻿namespace BookKeeper.Models
 {
-    public class Credit
+    public class Credit 
     {
+        public Guid Id { get; set; }
         public string GlNumber { get; set; } = string.Empty;
 
         public DateTime Date { get; set; }

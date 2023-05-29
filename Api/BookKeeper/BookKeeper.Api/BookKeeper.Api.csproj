@@ -29,4 +29,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookKeeper.DataStore\BookKeeper.DataStore.csproj" />
+  </ItemGroup>
+
 </Project>
