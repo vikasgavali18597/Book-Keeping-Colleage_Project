@@ -1,5 +1,7 @@
 using BookKeeper.DataStore;
+using BookKeeper.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<BookKeeperExtenssionCollection>();
+builder.Services.AddAutoMapper(typeof(BookKeeperExtenssionCollection).Assembly);
+
+
+
+builder.Services.AddScoped<BookKeeperDbContext>();
 
 var connectionString = builder.Configuration.GetConnectionString("BookKeeping");
 
