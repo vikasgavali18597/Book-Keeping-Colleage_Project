@@ -1,7 +1,8 @@
 ﻿namespace BookKeeper.Models
 {
-    public class Debit : Base
+    public class Debit 
     {
+        public Guid Id { get; set; }
         public string GlNumber { get; set; } = string.Empty;
 
         public DateTime Date { get; set; }
