@@ -15,10 +15,7 @@ namespace BookKeeper.DataStore
         public DbSet<AccountCategory> AccountCategories { get; set; }
         public BookKeeperDbContext(DbContextOptions<BookKeeperDbContext> options) : base(options)
         {
-<<<<<<< HEAD
-=======
 
->>>>>>> main
         }
     }
 }
