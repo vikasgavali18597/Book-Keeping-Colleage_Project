@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BookKeeper.Service
 {
-    public class BookKeeperExtenssionCollection
+    public static class BookKeeperExtenssionCollection
     {
-        public  IServiceCollection AddService(IServiceCollection service)
+        public static IServiceCollection AddService(this IServiceCollection service)
         {
             service.AddScoped<IAccountCategoryService, AccountCategoryService>();
             service.AddScoped<IAccountService, AccountService>();
