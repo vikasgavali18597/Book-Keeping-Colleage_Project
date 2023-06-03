@@ -4,6 +4,7 @@ using BookKeeper.DataStore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookKeeper.DataStore.Migrations
 {
     [DbContext(typeof(BookKeeperDbContext))]
-    partial class BookKeeperDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230602141702_Migration_V1")]
+    partial class Migration_V1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,10 +104,6 @@ namespace BookKeeper.DataStore.Migrations
                     b.Property<Guid>("ExplanationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("GlNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("JournalEntryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -125,17 +124,8 @@ namespace BookKeeper.DataStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("CrAccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("DrAccountId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("GlNumber")
                         .IsRequired()
@@ -146,10 +136,6 @@ namespace BookKeeper.DataStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CrAccountId");
-
-                    b.HasIndex("DrAccountId");
 
                     b.ToTable("JournalEntries");
                 });
@@ -190,25 +176,6 @@ namespace BookKeeper.DataStore.Migrations
                     b.Navigation("Explanation");
 
                     b.Navigation("JournalEntry");
-                });
-
-            modelBuilder.Entity("BookKeeper.Models.JournalEntry", b =>
-                {
-                    b.HasOne("BookKeeper.Models.Account", "CrAccount")
-                        .WithMany()
-                        .HasForeignKey("CrAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookKeeper.Models.Account", "DrAccount")
-                        .WithMany()
-                        .HasForeignKey("DrAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CrAccount");
-
-                    b.Navigation("DrAccount");
                 });
 
             modelBuilder.Entity("BookKeeper.Models.AccountCategory", b =>

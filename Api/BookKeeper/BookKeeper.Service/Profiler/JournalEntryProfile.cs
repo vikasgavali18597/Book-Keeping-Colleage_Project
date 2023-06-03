@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BookKeeper.DTO;
+using BookKeeper.Models;
 
 namespace BookKeeper.Service.Profiler
 {
@@ -6,7 +8,8 @@ namespace BookKeeper.Service.Profiler
     {
         public JournalEntryProfile()
         {
-
+            CreateMap<JournalEntry, JournalDTO>().ReverseMap();
+            CreateMap<JournalEntry, JournalEntryDTO>().ReverseMap();
         }
     }
 }

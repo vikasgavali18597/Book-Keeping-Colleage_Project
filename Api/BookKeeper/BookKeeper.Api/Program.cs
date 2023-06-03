@@ -1,3 +1,4 @@
+using BookKeeper.Api;
 using BookKeeper.DataStore;
 using BookKeeper.Service;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<BookKeeperExtenssionCollection>();
+//builder.Services.AddScoped<BookKeeperExtenssionCollection>();
 builder.Services.AddAutoMapper(typeof(BookKeeperExtenssionCollection).Assembly);
+builder.Services.AddService();
+
 
 
 
@@ -38,6 +41,9 @@ using (var scope =  app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<BookKeeperDbContext>();
     context.Database.Migrate();
+
+    context.AccountCategories.AddRange(builder.Services.AccountCategories());
+    context.SaveChanges();
 }
 
     // Configure the HTTP request pipeline.

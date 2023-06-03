@@ -4,12 +4,11 @@ using BookKeeper.Models;
 
 namespace BookKeeper.Service.Profiler
 {
-    public class AccountProfile : Profile
+    public class DebitProfile : Profile
     {
-
-        public AccountProfile()
+        public DebitProfile()
         {
-            CreateMap<Account, AccountDTO>().ReverseMap();
+            CreateMap<Debit, DebitDTO>().ReverseMap();
         }
     }
 }

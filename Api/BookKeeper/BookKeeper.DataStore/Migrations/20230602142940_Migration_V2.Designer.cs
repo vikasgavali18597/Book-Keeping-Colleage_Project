@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookKeeper.DataStore.Migrations
 {
     [DbContext(typeof(BookKeeperDbContext))]
-    [Migration("20230529161412_Migration_V1")]
-    partial class Migration_V1
+    [Migration("20230602142940_Migration_V2")]
+    partial class Migration_V2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,7 +79,7 @@ namespace BookKeeper.DataStore.Migrations
                     b.ToTable("AccountCategories");
                 });
 
-            modelBuilder.Entity("BookKeeper.Models.Credit", b =>
+            modelBuilder.Entity("BookKeeper.Models.GeneralLedger", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,15 +91,18 @@ namespace BookKeeper.DataStore.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ExplanationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("GlNumber")
+                    b.Property<string>("DrCr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ExplanationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("JournalEntryId")
                         .HasColumnType("uniqueidentifier");
@@ -110,47 +113,9 @@ namespace BookKeeper.DataStore.Migrations
 
                     b.HasIndex("ExplanationId");
 
-                    b.HasIndex("JournalEntryId")
-                        .IsUnique();
+                    b.HasIndex("JournalEntryId");
 
-                    b.ToTable("Credits");
-                });
-
-            modelBuilder.Entity("BookKeeper.Models.Debit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ExplanationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("GlNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("JournalEntryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("ExplanationId");
-
-                    b.HasIndex("JournalEntryId")
-                        .IsUnique();
-
-                    b.ToTable("Debits");
+                    b.ToTable("Ledgers");
                 });
 
             modelBuilder.Entity("BookKeeper.Models.JournalEntry", b =>
@@ -159,8 +124,17 @@ namespace BookKeeper.DataStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("CrAccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DrAccountId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("GlNumber")
                         .IsRequired()
@@ -172,13 +146,17 @@ namespace BookKeeper.DataStore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CrAccountId");
+
+                    b.HasIndex("DrAccountId");
+
                     b.ToTable("JournalEntries");
                 });
 
             modelBuilder.Entity("BookKeeper.Models.Account", b =>
                 {
                     b.HasOne("BookKeeper.Models.AccountCategory", "AccountCategory")
-                        .WithMany()
+                        .WithMany("Accounts")
                         .HasForeignKey("AccountCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -186,7 +164,7 @@ namespace BookKeeper.DataStore.Migrations
                     b.Navigation("AccountCategory");
                 });
 
-            modelBuilder.Entity("BookKeeper.Models.Credit", b =>
+            modelBuilder.Entity("BookKeeper.Models.GeneralLedger", b =>
                 {
                     b.HasOne("BookKeeper.Models.Account", "Account")
                         .WithMany()
@@ -201,35 +179,8 @@ namespace BookKeeper.DataStore.Migrations
                         .IsRequired();
 
                     b.HasOne("BookKeeper.Models.JournalEntry", "JournalEntry")
-                        .WithOne("Credit")
-                        .HasForeignKey("BookKeeper.Models.Credit", "JournalEntryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-
-                    b.Navigation("Explanation");
-
-                    b.Navigation("JournalEntry");
-                });
-
-            modelBuilder.Entity("BookKeeper.Models.Debit", b =>
-                {
-                    b.HasOne("BookKeeper.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookKeeper.Models.Account", "Explanation")
-                        .WithMany()
-                        .HasForeignKey("ExplanationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookKeeper.Models.JournalEntry", "JournalEntry")
-                        .WithOne("Debit")
-                        .HasForeignKey("BookKeeper.Models.Debit", "JournalEntryId")
+                        .WithMany("GeneralLedgers")
+                        .HasForeignKey("JournalEntryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -242,11 +193,31 @@ namespace BookKeeper.DataStore.Migrations
 
             modelBuilder.Entity("BookKeeper.Models.JournalEntry", b =>
                 {
-                    b.Navigation("Credit")
+                    b.HasOne("BookKeeper.Models.Account", "CrAccount")
+                        .WithMany()
+                        .HasForeignKey("CrAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Debit")
+                    b.HasOne("BookKeeper.Models.Account", "DrAccount")
+                        .WithMany()
+                        .HasForeignKey("DrAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CrAccount");
+
+                    b.Navigation("DrAccount");
+                });
+
+            modelBuilder.Entity("BookKeeper.Models.AccountCategory", b =>
+                {
+                    b.Navigation("Accounts");
+                });
+
+            modelBuilder.Entity("BookKeeper.Models.JournalEntry", b =>
+                {
+                    b.Navigation("GeneralLedgers");
                 });
 #pragma warning restore 612, 618
         }

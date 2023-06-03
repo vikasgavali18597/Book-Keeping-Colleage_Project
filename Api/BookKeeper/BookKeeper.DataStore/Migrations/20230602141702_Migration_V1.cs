@@ -62,73 +62,39 @@ namespace BookKeeper.DataStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Credits",
+                name: "Ledgers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GlNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     JournalEntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExplanationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ExplanationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DrCr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Credits", x => x.Id);
+                    table.PrimaryKey("PK_Ledgers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Credits_Accounts_AccountId",
+                        name: "FK_Ledgers_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Credits_Accounts_ExplanationId",
+                        name: "FK_Ledgers_Accounts_ExplanationId",
                         column: x => x.ExplanationId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Credits_JournalEntries_JournalEntryId",
+                        name: "FK_Ledgers_JournalEntries_JournalEntryId",
                         column: x => x.JournalEntryId,
                         principalTable: "JournalEntries",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Debits",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GlNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    JournalEntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ExplanationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Debits", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Debits_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Debits_Accounts_ExplanationId",
-                        column: x => x.ExplanationId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Debits_JournalEntries_JournalEntryId",
-                        column: x => x.JournalEntryId,
-                        principalTable: "JournalEntries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -137,46 +103,26 @@ namespace BookKeeper.DataStore.Migrations
                 column: "AccountCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Credits_AccountId",
-                table: "Credits",
+                name: "IX_Ledgers_AccountId",
+                table: "Ledgers",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Credits_ExplanationId",
-                table: "Credits",
+                name: "IX_Ledgers_ExplanationId",
+                table: "Ledgers",
                 column: "ExplanationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Credits_JournalEntryId",
-                table: "Credits",
-                column: "JournalEntryId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Debits_AccountId",
-                table: "Debits",
-                column: "AccountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Debits_ExplanationId",
-                table: "Debits",
-                column: "ExplanationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Debits_JournalEntryId",
-                table: "Debits",
-                column: "JournalEntryId",
-                unique: true);
+                name: "IX_Ledgers_JournalEntryId",
+                table: "Ledgers",
+                column: "JournalEntryId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Credits");
-
-            migrationBuilder.DropTable(
-                name: "Debits");
+                name: "Ledgers");
 
             migrationBuilder.DropTable(
                 name: "Accounts");
