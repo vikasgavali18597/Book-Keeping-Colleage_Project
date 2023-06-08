@@ -2,6 +2,8 @@
 using BookKeeper.DataStore;
 using BookKeeper.DTO;
 using BookKeeper.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BookKeeper.Service.Implementations
 {
@@ -20,7 +22,7 @@ namespace BookKeeper.Service.Implementations
 
         public async  Task<List<GeneralLedgerAccountDTO>> GetGeneralLdgerAccount(Guid id)
         {
-            var generalLedgerAccount = _context.Ledgers.Where(l => l.Id == id).FirstOrDefault();
+            var generalLedgerAccount = _context.Ledgers.Include("Explanation").Where(l => l.Id == id).FirstOrDefault();
             var dto = _Mapper.Map<List<GeneralLedgerAccountDTO>>(generalLedgerAccount);
             return dto;
         }
@@ -31,7 +33,7 @@ namespace BookKeeper.Service.Implementations
 
             foreach(Guid id in ids)
             {
-                var generalLedgerAccount = _context.Ledgers.Where(l => l.Id == id).FirstOrDefault();
+                var generalLedgerAccount = _context.Ledgers.Include("Explanation").Where(l => l.Id == id).FirstOrDefault();
                 var dto = _Mapper.Map<List<GeneralLedgerAccountDTO>>(generalLedgerAccount);
                 dtos.Add(dto);
             }
