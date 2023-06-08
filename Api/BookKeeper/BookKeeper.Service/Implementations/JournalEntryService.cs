@@ -21,6 +21,7 @@ namespace BookKeeper.Service.Implementations
         {
             try
             {
+                journalDto.GLNumber = GetGLNumber();
                 var journalEntry = _mapper.Map<JournalEntry>(journalDto);
                 journalEntry.GeneralLedgers = SetLedger(journalDto);
                 _context.JournalEntries.Add(journalEntry);
@@ -84,8 +85,7 @@ namespace BookKeeper.Service.Implementations
                 CreatedDate = createdDate,
                 Amount = journalEntryDTO.Amount,
                 DrCr = "D",
-                Date = journalEntryDTO.Date,
-                GlNumber = ""    
+                Date = journalEntryDTO.Date,  
             };
 
             var cEntry = new GeneralLedger
@@ -96,7 +96,6 @@ namespace BookKeeper.Service.Implementations
                 Amount = journalEntryDTO.Amount,
                 DrCr = "C",
                 Date = journalEntryDTO.Date,
-                GlNumber = ""
             };
 
             leders.Add(dEntry);
@@ -108,7 +107,10 @@ namespace BookKeeper.Service.Implementations
 
         private string GetGLNumber()
         {
-            return "";
+            var journals = _context.JournalEntries.Select(x => x.Date).Where(x => x.Date > DateTime.Now.Date && x.Date <= DateTime.Now.Date.AddDays(1));
+
+            var date = DateTime.Now.ToString("yyyyyMMdd");
+            return "GL-"+ date + "-"+(journals.Count() +1);
         }
         #endregion
 
