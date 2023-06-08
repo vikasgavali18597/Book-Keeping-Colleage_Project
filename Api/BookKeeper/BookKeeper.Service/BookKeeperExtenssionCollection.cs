@@ -11,6 +11,7 @@ namespace BookKeeper.Service
             service.AddScoped<IAccountCategoryService, AccountCategoryService>();
             service.AddScoped<IAccountService, AccountService>();
             service.AddScoped<IJournalEntryService, JournalEntryService>();
+            service.AddScoped<IGeneralLedgerService, GeneralLedgerService>();
             return service;
         }
     }
