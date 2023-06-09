@@ -110,7 +110,7 @@ namespace BookKeeper.Service.Implementations
             var journals = _context.JournalEntries.Select(x => x.Date).Where(x => x.Date > DateTime.Now.Date && x.Date <= DateTime.Now.Date.AddDays(1));
             var date = DateTime.Now.ToString("yyyyyMMdd");
             return "GL-"+ date + "-"+(journals.Count() +1);
-            //GL-20230608-1
+            //GL-20230608-1 generating from start
         }
         #endregion
 
