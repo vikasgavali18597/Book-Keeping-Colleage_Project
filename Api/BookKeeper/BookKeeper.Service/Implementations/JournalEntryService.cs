@@ -53,10 +53,12 @@ namespace BookKeeper.Service.Implementations
                 Date = x.Date
             });
             var dto = entries.Select(x => _mapper.Map<JournalEntryDTO>(x)).ToList();
+
             if (dto == null)
             {
                 throw new ArgumentNullException();
             }
+
             return dto;
         }
 
