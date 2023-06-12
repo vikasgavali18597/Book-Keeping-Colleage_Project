@@ -17,13 +17,13 @@ namespace BookKeeper.Service.Implementations
             _mapper = mapper;
         }
 
-        public async Task<string> AddJournalEntries(JournalEntryDTO journalDto)
+        public async Task<string> AddJournalEntries(JournalDTO journalDto)
         {
             try
             {
-                journalDto.GLNumber = GetGLNumber();
                 var journalEntry = _mapper.Map<JournalEntry>(journalDto);
-                journalEntry.GeneralLedgers = SetLedger(journalDto);
+                journalEntry.GlNumber = GetGLNumber();
+                journalEntry.GeneralLedgers = SetLedger(journalDto, journalEntry.GlNumber);
                 _context.JournalEntries.Add(journalEntry);
                 await _context.SaveChangesAsync();
                 return "Data added succsefully";
@@ -73,7 +73,7 @@ namespace BookKeeper.Service.Implementations
 
         #region private methods
         
-        private List<GeneralLedger> SetLedger(JournalEntryDTO journalEntryDTO)
+        private List<GeneralLedger> SetLedger(JournalDTO journalEntryDTO, string glnumber)
         {
             var createdDate = DateTime.Now;
             var leders = new List<GeneralLedger>();
@@ -85,7 +85,8 @@ namespace BookKeeper.Service.Implementations
                 CreatedDate = createdDate,
                 Amount = journalEntryDTO.Amount,
                 DrCr = "D",
-                Date = journalEntryDTO.Date,  
+                Date = journalEntryDTO.Date, 
+                GlNumber = glnumber
             };
 
             var cEntry = new GeneralLedger
@@ -96,6 +97,7 @@ namespace BookKeeper.Service.Implementations
                 Amount = journalEntryDTO.Amount,
                 DrCr = "C",
                 Date = journalEntryDTO.Date,
+                GlNumber = glnumber
             };
 
             leders.Add(dEntry);

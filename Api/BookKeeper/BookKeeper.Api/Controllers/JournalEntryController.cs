@@ -17,7 +17,7 @@ namespace BookKeeper.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddJournalEntry(JournalEntryDTO journalEntry)
+        public async Task<IActionResult> AddJournalEntry(JournalDTO journalEntry)
         {
             try
             {

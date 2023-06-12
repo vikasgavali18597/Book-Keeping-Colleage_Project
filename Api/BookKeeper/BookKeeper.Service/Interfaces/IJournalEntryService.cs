@@ -5,7 +5,7 @@ namespace BookKeeper.Service.Interfaces
 {
     public interface IJournalEntryService
     {
-        Task<string> AddJournalEntries(JournalEntryDTO journalDto);
+        Task<string> AddJournalEntries(JournalDTO journalDto);
 
         Task<JournalDTO> GetJournalEntries();
 
