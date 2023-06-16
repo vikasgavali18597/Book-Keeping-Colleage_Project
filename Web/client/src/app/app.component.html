@@ -1,4 +1,7 @@
 <app-sidebar [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded"></app-sidebar>
 <div class="content" [ngClass]="{ 'sidebarExpanded': sidebarExpanded }">
+  <mat-icon class="me-auto user" color="blue">account_circle</mat-icon>
+  <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> -->
+
   <router-outlet></router-outlet>
 </div>

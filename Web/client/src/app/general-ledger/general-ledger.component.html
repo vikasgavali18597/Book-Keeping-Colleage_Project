@@ -1,1 +1,68 @@
-<p>general-ledger works!</p>
+<!-- <mat-accordion *ngFor="let i of ledgers" class="accordion" >
+    <mat-card class="example-card">
+        <mat-card-content>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{i.name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+                </mat-expansion-panel-header>
+                <table *ngFor="let t of i.entries">
+                    <tr>
+                        <th>Explainatio</th>
+                        <th>Trn Type</th>
+                        <th>Amt</th>
+                        <th>Balance</th>
+                    </tr>
+                    <tr>
+                        <td>{{t.name}}</td>
+                        <td>{{t.type}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>{{t.amount}}</td>
+                    </tr>
+                </table>
+
+            </mat-expansion-panel>
+        </mat-card-content>
+    </mat-card>
+</mat-accordion> -->
+
+
+<div class="main">
+
+
+    <div *ngFor="let i of ledgers" class="accordion">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{i.name}}
+                        </mat-panel-title>
+                        <!-- <mat-panel-description>
+                        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                    </mat-panel-description> -->
+                    </mat-expansion-panel-header>
+                    <table *ngFor="let t of i.entries">
+                        <tr>
+                            <th>Explainatio</th>
+                            <th>Trn Type</th>
+                            <th>Amt</th>
+                            <th>Balance</th>
+                        </tr>
+                        <tr>
+                            <td>{{t.name}}</td>
+                            <td>{{t.type}}</td>
+                            <td>{{t.amount}}</td>
+                            <td>{{t.amount}}</td>
+                        </tr>
+                    </table>
+
+                </mat-expansion-panel>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
