@@ -1,0 +1,54 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h4>Journal</h4>
+  </div>
+    <div class="card-body m-5">
+      <form [formGroup]="generalForm!">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <label formlabel="">Dr Category</label><br>
+              <select formControlName="drCategory" >
+                <option>--Select--</option>
+                <option  *ngFor="let category of categories"  [ngValue]="category.id" style="width: 20px;">{{ category.name }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label formlabel="">Dr Accout</label><br>
+              <select formControlName="drAccount">
+                <option *ngFor="let category of categories" [ngValue]="category.id" >{{ category.name }}</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label formlabel="">Cr Category</label><br>
+              <input type="text" formControlName="drAccout">
+            </div>
+            <div class="col-md-6">
+              <label formlabel="">Cr Accout</label><br>
+              <input type="text" formControlName="crAccout">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Amount</label><br>
+              <input type="text" formControlName="amount">
+            </div>
+            <div class="col-md-6">
+              <label>Narration</label><br>
+              <input type="text" formControlName="narration">
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <div class="me-auto">
+                <button mat-raised-button  type="submit" value="Submit">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

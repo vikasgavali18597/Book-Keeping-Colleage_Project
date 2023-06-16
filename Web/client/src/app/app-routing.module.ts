@@ -4,6 +4,7 @@ import { JournalComponent } from './journal/journal.component';
 import { HomeComponent } from './home/home.component';
 import { GeneralLedgerComponent } from './general-ledger/general-ledger.component';
 
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: 'Gl',
     component: GeneralLedgerComponent,
+
   }
 ];
 

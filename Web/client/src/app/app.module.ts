@@ -14,13 +14,7 @@ import { GeneralLedgerComponent } from './general-ledger/general-ledger.componen
     HomeComponent,
     SidebarComponent,
     JournalComponent,
-    GeneralLedgerComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
