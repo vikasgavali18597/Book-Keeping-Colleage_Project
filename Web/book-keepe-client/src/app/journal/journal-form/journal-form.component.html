@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-5">
+            Journal Entries
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="row custom-wrapper">
+            <div class="col-md-12">
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                    <div class="group-gap">
+                        <div class="d-block my-3">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Dr Category</label>
+                                    
+                                        <mat-select class="custom-select form-control" (change)="changeCity($event)" formControlName="cityName">
+                                            <mat-option value="option">Option</mat-option>
+                                            <mat-option value="">Choose Dr Category</mat-option>
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Dr Account</label>
+                                        <mat-select class="custom-select form-control" (change)="changeCity($event)" formControlName="cityName">
+                                            <mat-option value="">Choose Dr Account</mat-option>
+                                            <mat-option *ngFor="let city of categories" [value]="city.id">{{city.name}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Cr Category</label>
+                                        <mat-select class="custom-select form-control" (change)="changeCity($event)" formControlName="cityName">
+                                            <mat-option value="">Choose Cr Category</mat-option>
+                                            <mat-option *ngFor="let city of categories" [value]="city">{{city.name}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Cr Account</label>
+                                        <mat-select class="custom-select form-control"  (change)="changeCity($event)" formControlName="cityName">
+                                            <mat-option value="">Choose Cr Account</mat-option>
+                                            <mat-option *ngFor="let city of categories" [value]="city">{{city.name}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Cr Category</label>
+                                        <input type="text"  formControlName="amount" id="email" class="form-control" placeholder="amount" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 example-container v">
+                                        <label>Cr Account</label>
+                                        <input type="text" formControlName="narration" id="email" class="form-control" placeholder="Narration" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="button" style="margin-left:150px;">
+                        <button type="submit" class="btn btn-success btn-lg btn-block mb-2" >Submit</button>
+                        <button type="submit" class="btn btn-danger btn-lg btn-block mb-2" style="margin-left: 20px;">Cancle</button>
+                    </div>
+              
+                </form><!-- Form ends -->
+
+            </div>
+        </div>
+    </div>
+</div>

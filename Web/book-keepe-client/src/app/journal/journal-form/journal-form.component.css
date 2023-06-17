@@ -1,0 +1,11 @@
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+
+  .v {
+    border-bottom: 1px solid black;
+  }
+
+  label {
+    font-weight: 100px;
+  } 
