@@ -1,0 +1,50 @@
+<div class="ledger" style=" margin: 5px;" *ngFor="let ledger of ledgers">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ledger.name + ' Leder'}}
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Gl-Number</th>
+                        <th>Explanation</th>
+                        <th>Dr Amt</th>
+                        <th>Cr Amt</th>
+                        <th>balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of ledger.table">
+                        <td>{{entry.name}}</td>
+                        <td>{{entry.glnumber}}</td>
+                        <td>{{entry.glnumber}}</td>
+
+                        <td>
+                            <p>
+                                {{entry.drAmount}}
+                            </p>
+                            <p>
+                                {{'--'}}
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                {{'--'}}
+                            </p>
+                            <p>
+                                {{entry.crAmount}}
+                            </p>
+                        </td>
+                        <td>{{entry.balance}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</div>
