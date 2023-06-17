@@ -1,0 +1,57 @@
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Gl-Number</th>
+            <th>Particulars</th>
+            <th>Dr Amt</th>
+            <th>Cr Amt</th>
+            <th>Narration</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let entry of entries">
+            <td>{{entry.date}}</td>
+            <td>{{entry.glnumber}}</td>
+            <td>
+                <p>
+                  Dr  {{entry.drAccount}}
+                </p>
+                <p>
+                 &nbsp;&nbsp; TO  {{entry.crAccount}} 
+                </p>
+
+            </td>
+            <td>
+                <p>
+                    {{entry.drAmount}}
+                </p>
+                <p>
+                    {{'--'}} 
+                </p>
+            </td>
+            <td>
+                <p>
+                    {{'--'}} 
+                </p>
+                <p>
+                    {{entry.crAmount}} 
+                </p>
+            </td>
+            <td>{{entry.narration}}</td>
+
+            <td>
+                <div class="btn-group">
+                    <button mat-button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Action
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <button class="dropdown-item" type="button">Edit</button>
+                      <button class="dropdown-item" type="button">Delete</button>
+                    </div>
+                  </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
