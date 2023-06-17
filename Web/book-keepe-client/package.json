@@ -1,5 +1,6 @@
 {
   "name": "book-keepe-client",
+  "name": "book-keepe-client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

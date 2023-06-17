@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+<<<<<<< HEAD
 import { JournalWrapperComponent } from './journal/journal-wrapper/journal-wrapper.component';
 import { JournalTableComponent } from './journal/journal-table/journal-table.component';
 import { JournalFormComponent } from './journal/journal-form/journal-form.component';
@@ -18,10 +19,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 
+=======
+>>>>>>> main
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     SidebarComponent,
     JournalWrapperComponent,
     JournalTableComponent,
@@ -40,6 +44,13 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule
+=======
+    SidebarComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+>>>>>>> main
   ],
   providers: [],
   bootstrap: [AppComponent]
