@@ -21,6 +21,8 @@ import { LedgerWrapperComponent } from './ledger/ledger-wrapper/ledger-wrapper.c
 import { LedgerTableComponent } from './ledger/ledger-table/ledger-table.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
+import { BookKeeperService } from './servises/book-keeper.service';
 
 
 @NgModule({
@@ -47,9 +49,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatOptionModule,
     MatSelectModule,
     CdkAccordionModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    BookKeeperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

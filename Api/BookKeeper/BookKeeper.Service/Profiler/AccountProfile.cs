@@ -10,6 +10,7 @@ namespace BookKeeper.Service.Profiler
         public AccountProfile()
         {
             CreateMap<Account, AccountDTO>().ReverseMap();
+            CreateMap<Account, AccountKeyDTO>().ReverseMap();
         }
     }
 }

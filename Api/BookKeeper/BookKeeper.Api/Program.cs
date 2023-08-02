@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
+const string CorsPolicy = "CORSPolicy";
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,8 +16,25 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddScoped<BookKeeperExtenssionCollection>();
 builder.Services.AddAutoMapper(typeof(BookKeeperExtenssionCollection).Assembly);
 builder.Services.AddService();
+builder.Services.AddCors(cor =>
+{
+    cor.AddDefaultPolicy(builder =>
+    {
+        builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
 
-
+    //cor.AddPolicy(CorsPolicy, builder =>
+    //{
+    //    builder.WithOrigins("http://localhost:4200/")
+    //    .AllowAnyHeader()
+    //    .AllowAnyMethod()
+    //    .AllowAnyOrigin()
+    //    .AllowCredentials();
+    //});
+});
 
 
 builder.Services.AddScoped<BookKeeperDbContext>();
@@ -35,27 +52,38 @@ builder.Services.AddDbContext<BookKeeperDbContext>(options =>
 });
 
 var app = builder.Build();
+app.UseCors();
 
 
-using (var scope =  app.Services.CreateScope())
+
+using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<BookKeeperDbContext>();
     context.Database.Migrate();
+    var accountCategory = context.AccountCategories.Any();
 
-    context.AccountCategories.AddRange(builder.Services.AccountCategories());
-    context.SaveChanges();
+    if (!accountCategory)
+    {
+        context.AccountCategories.AddRange(builder.Services.AccountCategories());
+        context.SaveChanges();
+    }
 }
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseRouting();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints => {
+    endpoints.MapControllers();
+});
 
 app.MapControllers();
 
