@@ -1,0 +1,54 @@
+.inboxContainer {
+    width: 88vw;
+    height: 60vh;
+    border: 1px solid black;
+     margin: auto;
+     position: absolute;
+     top: 4;
+     left: 4;
+     bottom: 4;
+     right: 4;
+}
+.newMessageContainer {
+     margin: auto;
+     position: absolute;
+     top: 80vh;
+     left: 30vw;
+     bottom: 0;
+     right: 0;
+}
+.mat-form-field {
+  width: 30vw;
+  top:0.1vh;
+}
+.mat-button {
+    left: 4vw;
+    top:1.4vh;
+    background-color: #B29B59;
+}
+.sendMessageContainer {
+        margin: auto;
+        position: absolute;
+        top: 80vh;
+        left: 60vw;
+        bottom: 0;
+        right: 0;
+}
+.wrapper {
+  display:flex;
+}
+.date {
+  border:1px solid black;
+  width: 20vw;
+  border-right:none;
+  border-left:none;
+}
+.sender {
+border:1px solid black;
+width: 20vw;
+border-left:none;
+}
+.answer {
+width: 38.8vw;
+height: 18vh;
+}

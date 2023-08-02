@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-<<<<<<< HEAD
 import { JournalWrapperComponent } from './journal/journal-wrapper/journal-wrapper.component';
 import { JournalTableComponent } from './journal/journal-table/journal-table.component';
 import { JournalFormComponent } from './journal/journal-form/journal-form.component';
@@ -17,20 +16,25 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { LedgerWrapperComponent } from './ledger/ledger-wrapper/ledger-wrapper.component';
+import { LedgerTableComponent } from './ledger/ledger-table/ledger-table.component';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
+import { BookKeeperService } from './servises/book-keeper.service';
 
-=======
->>>>>>> main
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     SidebarComponent,
     JournalWrapperComponent,
     JournalTableComponent,
     JournalFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    LedgerWrapperComponent,
+    LedgerTableComponent
   ],
   imports: [
     BrowserModule,
@@ -43,16 +47,14 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatOptionModule,
-    MatSelectModule
-=======
-    SidebarComponent
+    MatSelectModule,
+    CdkAccordionModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
->>>>>>> main
+  providers: [
+    BookKeeperService
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
